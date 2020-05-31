@@ -1,0 +1,37 @@
+<bs-navbar></bs-navbar>
+
+
+<p>
+ <a routerLink="/payment" class="btn btn-primary">New Payment</a>
+</p>
+<p>
+   <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search...">
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer name</th>
+      <th>Package</th>
+      <th>Id number</th>
+      <th>Offers</th>
+      <th>Service</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filteredPricess">
+      <td>{{ p.customername}}</td>
+      <td>{{ p.package}}</td>
+      <td>{{ p.Idnumber}}</td>
+      <td>{{ p.offers}}</td>
+      <td>{{ p.service}}</td>
+      <td>
+        
+        <button [routerLink]="['/payment', p.$key]" class="btn btn-info">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

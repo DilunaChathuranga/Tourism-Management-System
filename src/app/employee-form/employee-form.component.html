@@ -1,0 +1,118 @@
+<bs-navbar></bs-navbar>
+
+<button type="button" routerLink="/profiles/manage" class="btn btn-dark">Back</button>
+
+<div class="row">
+  <div class="col-md-6">
+
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+
+      <h4>Employee Details</h4>
+    
+      <div class="form-group">
+        <label for="name">Name :</label>
+        <input #name="ngModel" [(ngModel)]="employee.name" ngModel name="name" id="name" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">Name is required.</div>
+     </div>
+    
+     <div class="form-group">
+      <label for="age">Age :</label>
+      <input #age="ngModel" [(ngModel)]="employee.age" ngModel name="age" id="age" type="number" class="form-control" required [min]="18">
+ 
+      <div class="alert alert-danger"*ngIf="age.touched && age.invalid">
+          <div *ngIf="age.errors.required">Age is required.</div>
+          <div *ngIf="age.errors.min">Age should be greater than 18.</div>
+       </div>
+
+    </div> 
+    
+    <div class="form-group">
+        <label for="address">Address :</label>
+        <input #address="ngModel" [(ngModel)]="employee.address" ngModel name="address" id="address" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="address.touched && address.invalid">Address is required.</div>
+      </div>
+    
+      <div class="form-group">
+          <label for="mobile">Mobile :</label>
+          <input #mobile="ngModel" [(ngModel)]="employee.mobile" ngModel name="mobile" id="mobile" type="text" class="form-control" required>
+          <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">Mobile Number is required.</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input #email="ngModel" [(ngModel)]="employee.email" ngModel name="email" id="email" type="text" class="form-control" required>
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is required.</div>
+          </div>
+    
+          <div class="form-group">
+              <label for="category">Category :</label>
+              <select #category="ngModel" [(ngModel)]="employee.category" ngModel name="category" id="category"  class="form-control" required>
+                <option value=""></option>
+                <option *ngFor="let c of cate$ | async" [value]="c.cate">
+                  {{c.Name}}
+                </option>
+              </select>
+              <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
+          </div>
+    
+          <div class="form-group">
+              <label for="jobtitle">Job Title :</label>
+              <input #jobtitle="ngModel" [(ngModel)]="employee.jobtitle" ngModel name="jobtitle" id="jobtitle" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="jobtitle.touched && jobtitle.invalid">Job Title is required.</div>
+            </div>
+    
+            <div class="form-group">
+                <label for="basicsalary">Basic Salary :</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input #basicsalary="ngModel" [(ngModel)]="employee.basicsalary" ngModel name="basicsalary" id="basicsalary" type="number" class="form-control" required [min]="0">
+                </div>
+                <div class="alert alert-danger" *ngIf="basicsalary.touched && basicsalary.invalid">
+                  <div *ngIf="basicsalary.errors.required">Basic Salary is required.</div>
+                  <div *ngIf="basicsalary.errors.min">Basic Salary should be 0 or higher.</div>
+               </div>
+              </div>
+            
+            
+              <div class="form-group">
+                  <label for="qualification">Qualification :</label>
+                  <textarea #qualification="ngModel" [(ngModel)]="employee.qualification" ngModel name="qualification" id="qualification" type="text" class="form-control" rows="3" required></textarea>
+                  <div class="alert alert-danger" *ngIf="qualification.touched && qualification.invalid">qualification is required.</div>
+                </div>
+    
+    
+                <div class="form-group">
+                   
+                    <label for="imageUrl">Image Url :</label>
+                
+                    <input #imageUrl="ngModel" [(ngModel)]="employee.imageUrl" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+                    <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                        <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+                        <div *ngIf="imageUrl.errors.url">Please enter valid URL.</div>
+                    </div>
+                  
+              </div>
+              
+    
+      <button class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+     
+            
+      </form>
+    
+  </div>
+
+  
+  <div class="col-md-6">
+      <h4>Preview of Basic Details</h4>
+<div *ngIf="employee.name" class="card" style="width: 18rem;">
+  <img class="card-img-top" [src]="employee.imageUrl" *ngIf="employee.imageUrl">
+  <div class="card-body">
+    <h5 class="card-title">{{employee.name}}</h5>
+    <p class="card-text">{{employee.basicsalary | currency:'USD':true}}</p>
+    
+  </div>
+</div>
+</div>
+</div>
+

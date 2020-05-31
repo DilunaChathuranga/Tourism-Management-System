@@ -1,0 +1,30 @@
+<bs-navbar></bs-navbar>
+
+
+<p>
+     <a routerLink="/equipment/manage/form" class="btn btn-dark">New equipment</a> 
+</p>
+<p>
+    <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search....">
+</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of filteredEquipments" >
+                <td>{{e.title}}</td>
+                <td>{{e.price}}</td>
+                <td>
+                    <a [routerLink]="['/equipment/manage', e.$key]"><button class="btn btn-info">Edit</button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>

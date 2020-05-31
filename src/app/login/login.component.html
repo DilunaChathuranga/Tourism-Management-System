@@ -1,0 +1,32 @@
+<div class="login-full">
+  <div class="text-center">
+        <form #formData='ngForm' (ngSubmit)="onSubmit(formData)" class="form-signin">
+          <img class="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tq00O8W0xuBg2-5JY54b56PW6TEkWhf-tF8Zd8nEPlnubHh-" alt="" width="100" height="100">
+          <h1 class="h4 mb-6 font-weight-normal">Please Login</h1>
+          
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" (ngModel)="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+          
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" (ngModel)="password" name="password" class="form-control" placeholder="Password" required>
+          
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!formData.valid" >Login</button>
+          <br />or <hr /> 
+          <div class="row">
+              <div class="col-6"><button (click)="login()" class="btn btn-lg btn-primary btn-block"><small><small><i class="material-icons">
+                  mail
+                  </i></small> </small></button></div>
+              <div class="col-6"><button (click)="signUp()" class="btn btn-lg btn-primary btn-block">Sign Up</button></div>
+
+          </div>
+          
+          
+          <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+        </form>
+        </div>
+</div>

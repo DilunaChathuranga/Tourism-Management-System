@@ -1,0 +1,28 @@
+.dropdown-toggle{
+    cursor: pointer;
+}
+.navbar{
+    height: 50px;
+}
+.right{
+    position: absolute;
+    right: 10px;
+}
+.left{
+    position: absolute;
+    left : 10%;
+}
+.middle{
+    position: absolute;
+    right : 9%;
+    padding: 0 10px 0 10px;
+}
+
+/*.navbar-brand{
+    border: 2px solid rgb(66, 64, 64);
+    border-radius: 5px;
+    padding :5px 50px 0 120px;
+}*/
+.left li{
+    padding:0 35px 0 35px;
+}

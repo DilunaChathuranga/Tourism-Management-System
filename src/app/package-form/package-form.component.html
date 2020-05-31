@@ -1,0 +1,84 @@
+<bs-navbar></bs-navbar>
+<!--app-vertical-sidebar></app-vertical-sidebar-->
+
+<h1 class="display-4"><button routerLink="/package/manage" class="btn btn-link" ><i class="material-icons">navigate_before</i></button>Add a new Package</h1>
+<hr />
+
+<div class="row">
+  <div class="col-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+
+          <div class="form-group">
+            <label for="title">Name</label>
+            <input #title="ngModel" [(ngModel)]="package.title" name="title" id="title" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+                Title is required.
+              </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="noofdates">No of Dates</label>
+            <input #noofdates="ngModel" [(ngModel)]="package.noofdates" name="noofdates" id="noofdates" type="text" class="form-control" required [min]="1" [max]="31">
+              <div class="alert alert-danger" *ngIf="noofdates.touched && noofdates.invalid">
+                  <div *ngIf="noofdates.errors.required">No of Dates is Required</div>
+                <div *ngIf="noofdates.errors.min">No of Dates should be grater than 1 or higher</div>
+                <div *ngIf="noofdates.errors.max"># of dates for package more than a month </div>
+              </div>
+          </div>
+        
+            <div class="form-group">
+              <label for="description">Description</label>
+                <textarea #description="ngModel" [(ngModel)]="package.description" name="description" id="description" type="text" rows="3" class="form-control" required [rangeLength]="[1, 399]"></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                    <div *ngIf="description.errors.rangeLength">Max charactor 399 </div>
+                    <div *ngIf="description.errors.required">Description is required</div>
+                </div>  
+            </div>
+        
+            <div class="form-group">
+                <label for="imageUrl">Image Url</label>
+                <input #imageUrl="ngModel" [(ngModel)]="package.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+                  <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                    <div *ngIf= "imageUrl.errors.required">Image Url is required.</div> 
+                    <div *ngIf= "imageUrl.errors.url">Enter a valid URL</div> 
+                  </div>  
+              </div>
+            
+              <div class="form-group">
+                  <label for="category">Category</label>
+                  <select #category="ngModel" [(ngModel)]="package.category" name="category" id="category" type="text" class="form-control" required>
+                      <option value=""></option>
+                      <option *ngFor="let c of categories$ | async" [value]="c.$key">
+                        {{c.name}}
+                      </option>
+                  </select>
+                    <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+                      Category is required.
+                    </div>  
+                </div>
+
+                <button class="btn btn-info">Save</button>
+                <button type="button" class="btn btn-secondary" routerLink="/package/manage">Cancel</button>
+                <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+        
+        
+        </form>
+        
+  </div>
+  <div class="col-6">
+
+    <div *ngIf="package.title && package.noofdates" class="card" style="width: 90%">
+      <div class="text-center">
+        <img class="rounded" [src]="imageUrl.value" *ngIf= "package.imageUrl">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"> {{ package.title }} </h5>
+        <h6 class="card-title"> {{ package.noofdates-1 }} Nights {{ package.noofdates }} Days </h6>
+        <p class="card-text"> {{ package.description }} </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br /><br /><br />
+

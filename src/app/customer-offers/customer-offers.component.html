@@ -1,0 +1,82 @@
+<bs-navbar></bs-navbar>
+<!--app-vertical-sidebar></app-vertical-sidebar-->
+<!--app-packagesubnav></app-packagesubnav-->
+<br />
+<h1 class="display-4">Payment</h1>
+
+<span style="float: right; margin-top: -50px;"><button routerLink="/payment/manage" class="btn btn-dark">Manage Payment</button></span>
+<hr />
+
+<div class="row">
+   <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+          <div class="form-group">
+           <label for="cutomername">Customer name</label>
+           <input #customername="ngModel" [(ngModel)]="price.customername" name="customername" id="customername" type="text" class="form-control" required>
+         <div class="alert alert-danger" *ngIf="customername.touched && customername.invalid">
+           customer name is required.
+       </div>
+     </div> 
+      <div class="form-group">
+          <label for="package">Package</label>
+          <select #package="ngModel" [(ngModel)]="price.package" name="package" id="package" class="form-control" required>
+            <option value=""></option>
+            <option *ngFor="let p of packages$ | async" [value]="p.title">
+                {{ p.title }}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="package.touched && package.invalid">
+            package is required.
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="Idnumber">Id number</label>
+        <input #Idnumber="ngModel" [(ngModel)]="price.Idnumber" name="Idnumber" id="Idnumber" type="text" class="form-control" required digits>
+        <div class="alert alert-danger" *ngIf="Idnumber.touched && Idnumber.invalid">
+          <div *ngIf="Idnumber.errors.required">Id number is required.</div>
+          <div *ngIf="Idnumber.errors.digits">Id number should be digits.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">Service</label>
+        <input #service="ngModel" [(ngModel)]="price.service" name="service" id="service" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="service.touched && service.invalid">
+          Service is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="additional">Additional</label>
+        <input [(ngModel)]="price.additional" name="additional" id="additional" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="offers">Offers</label>
+        <input #offers="ngModel" [(ngModel)]="price.offers" name="offers" id="offers" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="offers.touched && offers.invalid">
+          offres is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input #imageUrl="ngModel" [(ngModel)]="price.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl.errors.required">Image Url is required.</div>
+          <div *ngIf="imageUrl.errors.url">Please enter valid Url.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+   <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="price.imageUrl" *ngIf="price.imageUrl" >
+      <div class="card-body">
+        <h5 class="card-title">{{ price.package }}</h5>
+        <p class="card-text">{{ price.customername  }}</p>
+        <p class="card-text">{{ price.Idnumber  }}</p>
+        <p class="card-text">{{ price.offers  }}</p>
+        <p class="card-text">{{ price.service  }}</p>
+      </div>
+    </div>
+   </div>
+</div>

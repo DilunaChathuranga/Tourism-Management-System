@@ -1,0 +1,61 @@
+.navbar{
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+}
+
+.col{
+  padding-bottom: 10px;
+}
+
+.card{
+  height: 300px;
+  overflow: hidden;
+}
+.rounded{
+  padding: 5px;
+  width: 100%;
+  
+}
+#card-main{
+width: 100%;
+padding: 5px;
+
+}
+.image-part{
+width:100%;
+position: absolute;
+right: 0;
+height: 70%;
+overflow: hidden;
+
+}
+
+.text-part{
+position: absolute;
+  bottom: 20px;
+ left: 20px;
+  background-color: rgb(0,0,0,0.3);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.desc{
+margin-top: 215px;
+width: 100%;
+}
+
+
+.list-group-item.active{
+background-color: #212121;
+border-color: #212121;
+}
+
+
+.sticky-top{
+top:80px;
+padding-top: 25px
+}

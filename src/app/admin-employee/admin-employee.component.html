@@ -1,0 +1,102 @@
+
+<bs-navbar></bs-navbar>
+
+<p>
+        <button type="button" routerLink="/profiles" class="btn btn-dark">Back</button>
+    <a routerLink="/profiles/manage/form" class="btn btn-dark">New Employee</a>
+</p>
+<p>
+<input
+    #query
+    (keyup)="filter(query.value)"
+     type="text" class="form-control" placeholder="Search...">
+</p>
+
+<!--
+<data-table
+[items]="item"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)"
+> 
+
+<data-table-column
+[property]="'name'"
+[header]="'name'"
+[sortable]="true"
+[resizable]="true"
+></data-table-column>
+
+<data-table-column
+[property]="'address'"
+[header]="'address'"
+[sortable]="true"
+[resizable]="true"
+></data-table-column>
+
+<data-table-column
+[property]="'email'"
+[header]="'email'"
+[sortable]="true"
+[resizable]="true"
+></data-table-column>
+
+<data-table-column
+[property]="'basicsalary'"
+[header]="'basicsalary'"
+[sortable]="true"
+[resizable]="true"
+>
+
+<ng-template #dataTableCell let-item="item">
+    {{item.basicsalary | currency:'USD':true}}
+</ng-template>
+</data-table-column>
+
+<data-table-column
+[property]="'$key'"
+>
+
+<ng-template #dataTableCell let-item="item">
+        <a [routerLink]="['/admin/profile-management/employees',item.$key]">Edit</a>
+</ng-template>
+</data-table-column>
+
+
+</data-table>
+-->
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Basic Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of filteredEmployees">
+            <td>{{e.name}}</td>
+            <td>{{e.address}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.basicsalary}}</td>
+            <td>
+                <button [routerLink]="['/profiles/manage/form',e.$key]" class="btn btn-info">Edit</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>

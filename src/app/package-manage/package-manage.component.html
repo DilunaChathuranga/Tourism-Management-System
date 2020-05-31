@@ -1,0 +1,37 @@
+<bs-navbar></bs-navbar>
+<!--app-vertical-sidebar></app-vertical-sidebar-->
+
+
+<h1 class="display-4"><button routerLink="/package" class="btn btn-link" ><i class="material-icons">navigate_before</i></button>Manages Packages</h1>
+<span style="float: right; margin-top: -50px;">
+  <button routerLink="/package/manage/form" class="btn btn-dark">New Package</button>
+</span>
+
+<hr />
+<p>
+  <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search..">
+</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>No of Dates</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filteredPackage">
+      <td>{{ p.title}} </td>
+      <td>{{ p.noofdates}} </td>
+      <td>{{ p.category}} </td>
+      <td>
+        <button [routerLink]="['/package/manage/form', p.$key]" class="btn btn-info">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+ul li{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.ptext{
+    text-align: center;line-height: 15px;padding:0;margin:0;
+}
+.fixed-top{
+    top: 50px;
+    height: 3rem;
+}
+
+.navbar{
+    z-index: 2;
+}

@@ -1,0 +1,13 @@
+.sticky-top{
+    top:80px;
+    padding-top: 25px
+}
+
+.backbtn{
+    padding-left: 90%;
+}
+
+.list-group-item.active{
+    background-color: #212121;
+    border-color: #212121;
+  }

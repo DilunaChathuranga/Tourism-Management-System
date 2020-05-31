@@ -1,0 +1,16 @@
+<bs-navbar></bs-navbar>
+<h1 class="display-4">Booking Details</h1> <br />
+<div class="container">
+    <ng-container *ngFor= "let b of booking; let i = index" >
+    <div class="jumbotron">
+      
+      <h4>Customer Name: {{ b.name }}</h4>
+      <p class="lead">Phone Number: {{ b.phone }}</p>
+      <p class="lead">Total: {{ b.total}}</p>
+      <!--button class="btn btn-primary">Confirm</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button-->
+    </div><br />
+  </ng-container>
+    
+
+  </div>

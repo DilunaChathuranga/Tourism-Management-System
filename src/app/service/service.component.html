@@ -1,0 +1,54 @@
+<bs-navbar></bs-navbar>
+<!--app-vertical-sidebar></app-vertical-sidebar-->
+<app-service-navbar></app-service-navbar>
+
+
+<h1 class="display-4">Service</h1>
+<span style="float: right; margin-top: -50px;"><button routerLink="/service/manage" class="btn btn-dark">Manage Services</button></span>
+
+<hr />
+<div class="row">
+  <div class="col-3">
+      <div class="sticky-top">
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action dark"
+      [class.active]="!category"
+      routerLink="/service">All Categories</a>
+      <a 
+        *ngFor="let c of category$| async"
+        routerLink="/service" 
+        [queryParams]="{category: c.cate}"
+        class="list-group-item list-group-item-action"
+        [class.active]="category === c.cate"
+        >
+        {{ c.Name }}
+      </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-9">
+    <div class="row">
+      <ng-container *ngFor= "let p of filteredService; let i = index">
+          <div class="col">
+            <div class="card" style="width: 24rem;" id="card-main">
+                <div class="image-part">
+                  
+                    <img class="rounded" [src]="p.Image">
+                    <div class="text-part">
+                      <h5 class="card-title"> {{ p.Name }} </h5>
+                      <ngb-rating [(rate)]="p.currentRate"  [readonly]="readonly"></ngb-rating>
+                    </div>
+                  </div>
+                <div class="desc">
+                  <small class="text-muted">{{ p.Description }}</small>
+                </div>
+              </div>
+          </div>
+          
+          <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>

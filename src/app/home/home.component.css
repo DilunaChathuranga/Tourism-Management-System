@@ -1,0 +1,51 @@
+.text-center{
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.form-signin{
+    padding-left:20%;
+    width:60%;
+}
+  
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+   /* margin-top: 100vh;*/
+  }
+  .marketing h2 {
+    font-weight: 400;
+  }
+  .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+
+ .marketing{
+      margin-top: 90vh;
+      text-align: center;
+    
+  }
+  .imgslider{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .rounded-circle{
+    border: 2px solid gray;
+  }
+
+  .footer{
+    background-color: darkgrey;
+  }

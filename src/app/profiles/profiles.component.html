@@ -1,0 +1,57 @@
+<bs-navbar></bs-navbar>
+<app-prof-subnav></app-prof-subnav>
+<br />
+<h1 class="display-4">Profile</h1>
+<span style="float: right; margin-top: -50px;"><button type="button" routerLink="/profiles/manage" class="btn btn-dark">Manage Profiles</button></span>
+
+<hr />
+<div class="row">
+  <div class="col-3">
+      <div class="sticky-top">
+    <div class="list-group">
+      <a
+      class="list-group-item list-group-item-action dark"
+      [class.active]=!category
+      routerLink="/profiles"> All Categories</a>
+
+  
+      <a *ngFor="let c of categories$ |async"
+      routerLink="/profiles"
+      [queryParams]="{category:c.cate}"
+      class="list-group-item list-group-item-action "
+      [class.active]="category==c.cate"
+      >
+        {{c.Name}}
+      </a>
+    </div>
+  </div>
+</div>
+  <div class="col">
+      <div class="row">
+          <ng-container *ngFor="let e of filteredEmployees; let i =index">
+              <div class="col">
+                  <div
+                  class="card" style="width: 15rem;">
+                     <img class="card-img-top" [src]="e.imageUrl" alt="Card image cap">
+                     <div class="card-body">
+                       <h5 class="card-title">{{e.name}}</h5>
+                       <h5 class="card-title">{{e.address}}</h5>
+                       <h5 class="card-text">{{ e.basicSalary | currency:'USD':true }}</h5>
+
+                       <ngb-rating [(rate)]="e.currentRate"  [readonly]="readonly"></ngb-rating>
+                       <!--ngb-rating [(rate)]=".currentRate"></ngb-rating-->
+                      
+                      <pre>Rate: <b>{{e.currentRate}}</b></pre>
+
+                       <a routerLink="" class="btn btn-secondary">View Details</a>
+                     </div>
+                   </div>
+               </div>
+             <div *ngIf="(i+1)%2==0" class="w-100"></div>
+          </ng-container>
+        </div>
+  </div>
+</div>
+
+
+

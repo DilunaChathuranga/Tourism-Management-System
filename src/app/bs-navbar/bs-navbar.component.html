@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-md fixed-top " style="background-color:black; color:antiquewhite">
+  <div class="left">
+      
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink="/home"><img src="https://firebasestorage.googleapis.com/v0/b/visitlk-121fe.appspot.com/o/Untitled-1.png?alt=media&token=34656bae-ef64-4780-91e2-9810cac6c25b" width="30px"/>  </a>
+        </li>
+          <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button-->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profiles">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/package">Package</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/service">Service</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/equipment">Equipment</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/payment">Payment</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/home"><i class="material-icons"> search </i></a>
+        </li>
+        
+
+      </ul>
+</div>
+
+<div class="middle">
+    <ul class="navbar-nav mr-auto">
+    
+    <!--li class="nav-item">
+        <a class="nav-link" routerLink="/mail"><i class="material-icons">question_answer</i></a>
+    </li-->
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/booking"><i class="material-icons">mail_outline</i></a>
+    </li>
+    </ul>
+</div>
+
+    <div class="right">
+      
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <!--li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+        </li-->
+        <ng-template #anonymousUser>
+          <li class="nav-itms">
+            <a class="nav-link" routerLink="/">Login</a>
+          </li>
+        </ng-template>
+        
+        <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ appUser.name }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01" style="z-index: -1;">
+              <a class="dropdown-item" routerLink="">Edit Profile</a>
+            <!--a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+            <ng-container *ngIf="appUser.isAdmin">
+              <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+              <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+            </ng-container-->
+            <a class="dropdown-item" (click)="logout()" routerLink="/">Log Out</a>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>

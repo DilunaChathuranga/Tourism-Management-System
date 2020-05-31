@@ -1,0 +1,56 @@
+<bs-navbar></bs-navbar>
+<app-equ-subnav></app-equ-subnav>
+
+<br />
+<h1 class="display-4">Equipment</h1>
+<span style="float: right; margin-top: -50px;"><button routerLink="/equipment/manage" class="btn btn-dark">Manage Equipment</button></span>
+
+<hr />
+
+<div class="row">
+    
+        <div class="col-3">
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action dark"
+            [class.active]="!category"
+            routerLink="/equipment">All Categories</a>
+            <a 
+              *ngFor="let c of category$| async"
+              routerLink="/equipment" 
+              [queryParams]="{category: c.$key}"
+              class="list-group-item list-group-item-action"
+              [class.active]="category === c.$key"
+              >
+              {{ c.name }}
+            </a>
+          </div>
+        </div>
+    
+
+        <div class="col-9">
+            <div class="row">
+              <ng-container *ngFor= "let equipment of filteredEquipments; let i = index">
+                  <div class="col">
+                    <div class="card" style="width: 24rem;" id="card-main">
+                        <div class="image-part">
+                          <div class="text-center">
+                            <img class="rounded" [src]="equipment.imageUrl">
+                          </div>
+                        </div>
+                        <div class="text-part">
+                          
+                            <h5 class="card-title"> {{equipment.title }} </h5>
+                            <h6 class="card-title"> {{equipment.price | currency:'USD':true }} Days </h6>
+                        
+                        </div>
+                        
+                      </div>
+                  </div>
+                  
+                  <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+

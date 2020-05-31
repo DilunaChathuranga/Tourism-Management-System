@@ -1,0 +1,107 @@
+<bs-navbar></bs-navbar>
+<h1 class="display-4"><button routerLink="/service/manage" class="btn btn-link" ><i class="material-icons">navigate_before</i></button>Add a new Service</h1>
+<hr />
+
+<div class="row">
+  <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+          <div class="form-group">
+            <label for="Name">Name of the Service</label>
+            <input #Name="ngModel" [(ngModel)]="service.Name" name="Name" id="Name" type="text" class="form-control" required>
+             <div class="alert alert-danger" *ngIf="Name.touched && Name.invalid" > 
+              Title is required.
+            </div>
+          </div>
+        
+           <div class="form-group">
+              <label for="Category">Category</label>
+              <select #Category="ngModel" [(ngModel)]="service.Category" name="Category" id="Category" class="form-control" required>
+                <option value=""></option>
+                <option *ngFor="let c of categories$ | async" [value]="c.cate">
+                  {{c.Name}}
+                </option>
+              </select>
+              <div class="alert alert-danger" *ngIf="Category.touched && Category.invalid" >
+                Category is required.
+              </div>
+            </div>
+        
+          <div class="form-group">
+              <label for="Price">Price</label>
+              <div class="input-group">
+                <span class="input-group-text"> $ </span>
+                <input #Price="ngModel" [(ngModel)]="service.Price" name="Price" id="Price" type="text" class="form-control" required [min]="0">
+              </div>
+              <div class="alert alert-danger" *ngIf="Price.touched && Price.invalid">
+                <div *ngIf="Price.errors.required">Price is required.  </div>  
+                <div *ngIf="Price.errors.min">Price should be 0 or higher.  </div>
+                </div>
+           </div>
+
+           <div class="form-group">
+            <label for="Description">Description</label>
+            <div class="input-group"> 
+              <input #Description="ngModel" [(ngModel)]="service.Description" name="Description" id="Description" type="text" class="form-control" required>
+            </div>
+            <div class="alert alert-danger" *ngIf="Description.touched && Description.invalid">
+               <div *ngIf="Description.errors.required">Quantity is required.</div>  
+            </div>
+         </div>
+
+           <div class="form-group">
+            <label for="Discount">Discount</label>
+            <div class="input-group"> 
+              <input #Discount="ngModel" [(ngModel)]="service.Discount" name="Discount" id="Discount" type="text" class="form-control" required [min]="0">
+            </div>
+            <div class="alert alert-danger" *ngIf="Discount.touched && Discount.invalid">
+              <div *ngIf="Discount.errors.required">Discount is required.  </div>  
+              <div *ngIf="Discount.errors.min">Discount should be 0 or higher.  </div>
+              </div>
+         </div>
+
+         <div class="form-group">
+          <label for="MenuId">Menu ID</label>
+          <div class="input-group"> 
+            <input #MenuId="ngModel" [(ngModel)]="service.MenuId" name="MenuId" id="MenuId" type="text" class="form-control" required [min]="0">
+          </div>
+          <div class="alert alert-danger" *ngIf="MenuId.touched && MenuId.invalid">
+            <div *ngIf="MenuId.errors.required">Menu ID is required.  </div>  
+            <div *ngIf="MenuId.errors.min">Quantity should be 0 or higher.  </div> 
+            </div>
+       </div>
+        
+          <div class="form-group">
+              <label for="Image">Image URL</label>
+              <input #Image="ngModel" [(ngModel)]="service.Image" name="Image" id="Image" type="text" class="form-control" required url>
+              <div class="alert alert-danger" *ngIf="Image.touched && Image.invalid">
+                <div *ngIf="Image.errors.required"> Image URL is required.</div>
+                <div *ngIf="Image.errors.url"> Please enter a valid URL.</div>
+              </div>
+            </div>
+
+            
+        
+          <button class="btn btn-primary">Save</button>
+          <button type="button" (click)="delete()" class="btn btn-danger">Delete</button> 
+          <button type="button" class="btn btn-secondary" routerLink="/service/manage">Cancel</button>
+              
+        </form>
+  </div>
+
+  <div class="col-6">
+
+    <div *ngIf="service.Name" class="card" style="width: 90%">
+      <div class="text-center">
+        <img class="rounded" [src]="service.Image" *ngIf= "service.Image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"> {{ service.Name }} </h5>
+        <h6 class="card-title"> $ {{ service.Price }} </h6>
+        <p class="card-text"> {{ service.Category }} </p>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

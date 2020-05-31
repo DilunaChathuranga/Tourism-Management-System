@@ -1,0 +1,37 @@
+<bs-navbar></bs-navbar>
+<!--app-vertical-sidebar></app-vertical-sidebar-->
+
+
+<h1 class="display-4"><button routerLink="/service" class="btn btn-link" ><i class="material-icons">navigate_before</i></button>Manages Service</h1>
+<span style="float: right; margin-top: -50px;">
+  <button routerLink="/service/manage/form" class="btn btn-dark">New Service</button>
+</span>
+
+<hr />
+<p>
+  <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search..">
+</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filteredService">
+      <td>{{ p.Name}} </td>
+      <td>{{ p.Price}} </td>
+      <td>{{ p.Category}} </td>
+      <td>
+        <button [routerLink]="['/service/manage/form', p.$key]" class="btn btn-info">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
